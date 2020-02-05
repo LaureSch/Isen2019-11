@@ -9,7 +9,7 @@ namespace Isen.Dotnet.Library.Services
 {
     public class DataInitializer : IDataInitializer
     {
-        private List<string> _firstNames => new List<string>
+        private List<string> _prenoms => new List<string>
         {
             "Sang", 
             "Anne",
@@ -21,7 +21,7 @@ namespace Isen.Dotnet.Library.Services
             "Louis",
             "Alicia"
         };
-        private List<string> _lastNames => new List<string>
+        private List<string> _noms => new List<string>
         {
             "Schuck",
             "Arbousset",
@@ -32,7 +32,7 @@ namespace Isen.Dotnet.Library.Services
             "Sarrazin",
             "Vu Dinh"
         };
-        private List<string> _phoneNumbers => new List<string>
+        private List<string> _telephones => new List<string>
         {
             "0601020304",
             "0605070809",
@@ -43,7 +43,7 @@ namespace Isen.Dotnet.Library.Services
             "0626272829",
             "0630313233"
         };
-        private List<string> _mailAddresses => new List<string>
+        private List<string> _adressesMail => new List<string>
         {
             "sang.schuck@isen.fr",
             "anne.arbousset@isen.fr",
@@ -71,10 +71,10 @@ namespace Isen.Dotnet.Library.Services
 
         // Générateur de prénom
         private string RandomFirstName => 
-            _firstNames[_random.Next(_firstNames.Count)];
+            _prenoms[_random.Next(_prenoms.Count)];
         // Générateur de nom
         private string RandomLastName => 
-            _lastNames[_random.Next(_lastNames.Count)];
+            _noms[_random.Next(_noms.Count)];
 
         // Générateur de date
         private DateTime RandomDate =>
@@ -83,11 +83,11 @@ namespace Isen.Dotnet.Library.Services
 
         // Générateur de numéro de téléphone
         private string RandomPhoneNumber =>
-            _phoneNumbers[_random.Next(_phoneNumbers.Count)];
+            _telephones[_random.Next(_telephones.Count)];
 
         // Générateur d'adresse mail
         private string RandomMailAddress =>
-            _mailAddresses[_random.Next(_mailAddresses.Count)];
+            _adressesMail[_random.Next(_adressesMail.Count)];
 
         // Générateur de service
         private Service RandomServiceAffected =>
@@ -98,38 +98,38 @@ namespace Isen.Dotnet.Library.Services
             GetRoles()[_random.Next(GetRoles().Count)];*/
 
         // Générateur de personne
-        private Person RandomPerson => new Person()
+        private Personne RandomPersonne => new Personne()
         {
-            FirstName = RandomFirstName,
-            LastName = RandomLastName,
-            DateOfBirth = RandomDate,
-            PhoneNumber = RandomPhoneNumber,
-            MailAddress = RandomMailAddress,
-            ServiceAffected = RandomServiceAffected
+            Prenom = RandomFirstName,
+            Nom = RandomLastName,
+            DateDeNaissance = RandomDate,
+            Telephone = RandomPhoneNumber,
+            AdresseMail = RandomMailAddress,
+            Service = RandomServiceAffected
             //RolesAffected = RandomRolesAffected
         };
         // Générateur de personnes
-        public List<Person> GetPersons(int size)
+        public List<Personne> GetPersonnes(int size)
         {
-            var persons = new List<Person>();
+            var personnes = new List<Personne>();
             for(var i = 0 ; i < size ; i++)
             {
-                persons.Add(RandomPerson);
+                personnes.Add(RandomPersonne);
             }
-            return persons;
+            return personnes;
         }
 
         public List<Service> GetServices()
         {
             return new List<Service>
             {
-                new Service { Name = "Marketing"},
-                new Service { Name = "Production"},
-                new Service { Name = "RH"},
-                new Service { Name = "Commercial"},
-                new Service { Name = "Finance"},
-                new Service { Name = "Achats"},
-                new Service { Name = "Juridique"}
+                new Service { Nom = "Marketing"},
+                new Service { Nom = "Production"},
+                new Service { Nom = "RH"},
+                new Service { Nom = "Commercial"},
+                new Service { Nom = "Finance"},
+                new Service { Nom = "Achats"},
+                new Service { Nom = "Juridique"}
             };
         }
 
@@ -137,17 +137,17 @@ namespace Isen.Dotnet.Library.Services
         {
             return new List<Role>
             {
-                new Role { Name = "Marchandiseur"},
-                new Role { Name = "Directeur Relation Client"},
-                new Role { Name = "Technicien qualité"},
-                new Role { Name = "Chargé de formation"},
-                new Role { Name = "Directeur commercial"},
-                new Role { Name = "Business developer"},
-                new Role { Name = "Trésorier"},
-                new Role { Name = "Comptable"},
-                new Role { Name = "Directeur financier"},
-                new Role { Name = "Acheteur"},
-                new Role { Name = "Juriste d'entreprise"}
+                new Role { Nom = "Marchandiseur"},
+                new Role { Nom = "Directeur Relation Client"},
+                new Role { Nom = "Technicien qualité"},
+                new Role { Nom = "Chargé de formation"},
+                new Role { Nom = "Directeur commercial"},
+                new Role { Nom = "Business developer"},
+                new Role { Nom = "Trésorier"},
+                new Role { Nom = "Comptable"},
+                new Role { Nom = "Directeur financier"},
+                new Role { Nom = "Acheteur"},
+                new Role { Nom = "Juriste d'entreprise"}
             };
         }
 
@@ -164,15 +164,15 @@ namespace Isen.Dotnet.Library.Services
             _context.Database.EnsureCreated();
         }
 
-        public void AddPersons()
+        public void AddPersonnes()
         {
             _logger.LogWarning("Adding persons...");
             // S'il y a déjà des personnes dans la base -> ne rien faire
-            if (_context.PersonCollection.Any()) return;
+            if (_context.PersonneCollection.Any()) return;
             // Générer des personnes
-            var persons = GetPersons(50);
+            var personnes = GetPersonnes(50);
             // Les ajouter au contexte
-            _context.AddRange(persons);
+            _context.AddRange(personnes);
             // Sauvegarder le contexte
             _context.SaveChanges();
         }
