@@ -10,5 +10,8 @@ namespace Isen.Dotnet.Library.Services
          void CreateDatabase();
          void AddPersons();
          void AddCities();
+
+         List<Personne> GetPersonnes(int size);
+         void AddPersonnes();
     }
 }

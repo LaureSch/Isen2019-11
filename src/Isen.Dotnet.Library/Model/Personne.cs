@@ -8,7 +8,7 @@ namespace Isen.Dotnet.Library.Model
         public string Nom {get;set;}
         public string Prenom {get;set;}
         public DateTime? DateDeNaissance {get;set;}
-        public int? Telephone {get;set;}
+        public string Telephone {get;set;}
         public string AdresseMail {get;set;}
         public Service Service {get;set;}
         public int? ServiceId {get;set;}

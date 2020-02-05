@@ -1,0 +1,69 @@
+@{
+    ViewData["Title"] = "Edition d'un personne";
+}
+@using Isen.Dotnet.Library.Model;
+@using Isen.Dotnet.Library.Context;
+@model Personne;
+@inject ApplicationDbContext _context;
+
+<h2>Création ou édition <small>d'une personne</small></h2>
+<form class="form-group" asp-action="Edit">
+
+    <h3>Identité <small>de la personne</small></h3>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="Nom">Nom de famille</label>
+                <input
+                    id="Nom"
+                    type="text"
+                    class="form-control"
+                    placeholder="Nom de famille"
+                    asp-for="Nom"
+                    value="@Model?.Nom" />
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="Prenom">Prénom</label>
+                <input
+                    id="Prenom"
+                    type="text"
+                    class="form-control"
+                    placeholder="Prénom"
+                    asp-for="Prenom"
+                    value="@Model?.Prenom" />
+            </div>
+        </div>
+    </div>
+
+
+    @{
+        var dateTimeString = "";
+        if (Model?.DateDeNaissance != null) 
+            dateTimeString = Model.DateDeNaissance.Value.ToString("dd/MM/yyyy");
+    }
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="DateDeNaissance">Date de naissance</label>
+                <input
+                    id="DateDeNaissance"
+                    type="text"
+                    class="form-control"
+                    placeholder="jj/mm/aaaa"
+                    asp-for="DateDeNaissance"
+                    value="@dateTimeString" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Valider</button>
+                <a class="btn btn-secondary" asp-action="Index">Annuler</a>
+            </div>
+        </div>
+    </div>
+
+</form>        

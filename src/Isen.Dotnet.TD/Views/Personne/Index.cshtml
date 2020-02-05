@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Liste des personnes";
+}
+@using Isen.Dotnet.Library.Model;
+@model IEnumerable<Personne>;
+<div>
+    <h1>Liste <small>des personnes</small></h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Date de naissance</th>
+                <th scope="col">Action...</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var personne in Model)
+            {
+            <tr>
+                <th scope="row">@personne.Id</th>
+                <td>@personne.Nom</td>
+                <td>@personne.Prenom</td>
+                <td>@personne.DateDeNaissance.Value.ToShortDateString()</td>
+                <td>
+                    <a class="btn btn-outline-primary"
+                        asp-controller="Personne"
+                        asp-action="Edit"
+                        asp-route-id="@personne.Id">Modifier</a>
+                    <a class="btn btn-outline-danger"
+                        asp-controller="Personne"
+                        asp-action="Delete"
+                        asp-route-id="@personne.Id">Supprimer</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
