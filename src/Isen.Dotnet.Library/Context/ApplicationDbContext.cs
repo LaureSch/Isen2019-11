@@ -21,7 +21,6 @@ namespace Isen.Dotnet.Library.Context
         protected override void OnModelCreating(
             ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PersonneRole>().HasKey(pr => new {pr.PersonneId, pr.RoleId});
             base.OnModelCreating(modelBuilder);
 
             // Tables et relations
@@ -56,10 +55,10 @@ namespace Isen.Dotnet.Library.Context
 
             modelBuilder
                 .Entity<Personne>()
-                .ToTable(nameof(Personne));
-                //.HasOne(p => p.Service)
-                //.WithMany()
-                //.HasForeignKey(p => p.ServiceId);
+                .ToTable(nameof(Personne))
+                .HasOne(p => p.Service)
+                .WithMany()
+                .HasForeignKey(p => p.ServiceId);
 
             modelBuilder.Entity<Personne>()
                 .HasKey(p => p.Id);
@@ -73,6 +72,19 @@ namespace Isen.Dotnet.Library.Context
                 .Entity<Role>()
                 .ToTable(nameof(Role))
                 .HasKey(r => r.Id);
+
+            modelBuilder.Entity<PersonneRole>().HasKey(pr => new {pr.PersonneId, pr.RoleId});
+
+            modelBuilder.Entity<PersonneRole>()
+                .HasOne<Personne>(pr => pr.Personne)
+                .WithMany(s => s.PersonneRole)
+                .HasForeignKey(pr => pr.PersonneId);
+
+
+            modelBuilder.Entity<PersonneRole>()
+                .HasOne<Role>(pr => pr.Role)
+                .WithMany(s => s.PersonneRole)
+                .HasForeignKey(pr => pr.RoleId);
         }
 
     }

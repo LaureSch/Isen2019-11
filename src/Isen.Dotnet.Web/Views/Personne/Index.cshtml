@@ -14,6 +14,7 @@
                 <th scope="col">Date de naissance</th>
                 <th scope="col">Téléphone</th>
                 <th scope="col">Adresse Mail</th>
+                <th scope="col">Service</th>
                 <th scope="col">Action...</th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@
                 <td>@personne.DateDeNaissance.Value.ToShortDateString()</td>
                 <td>@personne.Telephone</td>
                 <td>@personne.AdresseMail</td>
+                <td>@personne.Service</td>
                 <td>
                     <a class="btn btn-outline-primary"
                         asp-controller="Personne"

@@ -37,34 +37,6 @@
         </div>
     </div>
 
-    <h3>Coordonnées <small>de la personne</small></h3>
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-                <label for="PhoneNumber">Numéro de téléphone</label>
-                <input
-                    id="PhoneNumber"
-                    type="text"
-                    class="form-control"
-                    placeholder="Numéro de téléphone"
-                    asp-for="PhoneNumber"
-                    value="@Model?.PhoneNumber" />
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="form-group">
-                <label for="MailAddress">Adresse mail</label>
-                <input
-                    id="MailAddress"
-                    type="text"
-                    class="form-control"
-                    placeholder="Adresse mail"
-                    asp-for="MailAddress"
-                    value="@Model?.MailAddress" />
-            </div>
-        </div>
-    </div>
-
     @{
         var dateTimeString = "";
         if (Model?.DateOfBirth != null) 

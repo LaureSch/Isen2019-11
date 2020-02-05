@@ -30,7 +30,7 @@ namespace Isen.Dotnet.Web
                 dataInitializer.CreateDatabase();
                 dataInitializer.AddServices();
                 dataInitializer.AddRoles();
-                dataInitializer.AddPersons();
+                dataInitializer.AddPersonnes();
             }
             // l'exécuter
             host.Run(); // Loop d'exécution et d'écoute du serveur web

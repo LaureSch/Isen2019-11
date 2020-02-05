@@ -11,26 +11,29 @@ namespace Isen.Dotnet.Library.Services
     {
         private List<string> _prenoms => new List<string>
         {
-            "Sang", 
+            "Louis", 
             "Anne",
             "Boris",
             "Pierre",
             "Laura",
             "Hadrien",
             "Camille",
-            "Louis",
-            "Alicia"
+            "Laure",
+            "Alicia",
+            "Théo"
         };
         private List<string> _noms => new List<string>
         {
             "Schuck",
-            "Arbousset",
-            "Lopasso",
-            "Jubert",
-            "Lebrun",
-            "Dutaud",
             "Sarrazin",
-            "Vu Dinh"
+            "Dutaud",
+            "Lebrun",
+            "Jubert",
+            "Lopasso",
+            "Arbousset",
+            "Schneider",
+            "Villemat",
+            "Hipault"
         };
         private List<string> _telephones => new List<string>
         {
@@ -41,19 +44,11 @@ namespace Isen.Dotnet.Library.Services
             "0618192021",
             "0622232425",
             "0626272829",
-            "0630313233"
+            "0630313233",
+            "0658943652",
+            "0677365942"
         };
-        private List<string> _adressesMail => new List<string>
-        {
-            "sang.schuck@isen.fr",
-            "anne.arbousset@isen.fr",
-            "boris.lopasso@isen.fr",
-            "pierre.jubert@isen.fr",
-            "laura.lebrun@isen.fr",
-            "hadrien.dutaud@isen.fr",
-            "camille.sarrazin@isen.fr",
-            "louis.vudinh@isen.fr"
-        };
+        
         // Générateur aléatoire
         private readonly Random _random;
 
@@ -85,29 +80,41 @@ namespace Isen.Dotnet.Library.Services
         private string RandomPhoneNumber =>
             _telephones[_random.Next(_telephones.Count)];
 
-        // Générateur d'adresse mail
-        private string RandomMailAddress =>
-            _adressesMail[_random.Next(_adressesMail.Count)];
-
         // Générateur de service
-        private Service RandomServiceAffected =>
-            GetServices()[_random.Next(GetServices().Count)];
+        private Service RandomServiceAffected
+        {
+            get{
+                var services = _context.ServiceCollection.ToList();
+                return services[_random.Next(services.Count)];
+            }
+        }
+            //GetServices()[_random.Next(GetServices().Count)];
 
         /* Générateur de role
         private Service RandomRolesAffected =>
             GetRoles()[_random.Next(GetRoles().Count)];*/
 
         // Générateur de personne
-        private Personne RandomPersonne => new Personne()
+        private Personne RandomPersonne
         {
-            Prenom = RandomFirstName,
-            Nom = RandomLastName,
-            DateDeNaissance = RandomDate,
-            Telephone = RandomPhoneNumber,
-            AdresseMail = RandomMailAddress,
-            Service = RandomServiceAffected
-            //RolesAffected = RandomRolesAffected
-        };
+            get{
+                var prenom = RandomFirstName;
+                var nom = RandomLastName;
+            
+                var personne = new Personne()
+                {
+                    Prenom = prenom,
+                    Nom = nom,
+                    DateDeNaissance = RandomDate,
+                    Telephone = RandomPhoneNumber,
+                    AdresseMail = prenom+"."+nom+"@isen.fr",
+                    Service = RandomServiceAffected
+                    //RolesAffected = RandomRolesAffected
+                };
+
+                return personne;
+            }
+        }
 
         // Générateur de personnes
         public List<Personne> GetPersonnes(int size)
@@ -171,7 +178,7 @@ namespace Isen.Dotnet.Library.Services
             // S'il y a déjà des personnes dans la base -> ne rien faire
             if (_context.PersonneCollection.Any()) return;
             // Générer des personnes
-            var personnes = GetPersonnes(50);
+            var personnes = GetPersonnes(10);
             // Les ajouter au contexte
             _context.AddRange(personnes);
             // Sauvegarder le contexte
