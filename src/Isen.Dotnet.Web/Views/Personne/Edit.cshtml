@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Edition d'un personne";
+    ViewData["Title"] = "Edition d'une personne";
 }
 @using Isen.Dotnet.Library.Model;
 @using Isen.Dotnet.Library.Context;
@@ -33,6 +33,34 @@
                     placeholder="Prénom"
                     asp-for="Prenom"
                     value="@Model?.Prenom" />
+            </div>
+        </div>
+    </div>
+
+    <h3>Contact <small>de la personne</small></h3>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="Telephone">Téléphone</label>
+                <input
+                    id="Telephone"
+                    type="text"
+                    class="form-control"
+                    placeholder="Téléphone"
+                    asp-for="Telephone"
+                    value="@Model?.Telephone" />
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="AdresseMail">Adresse Mail</label>
+                <input
+                    id="AdresseMail"
+                    type="text"
+                    class="form-control"
+                    placeholder="Adresse Mail"
+                    asp-for="AdresseMail"
+                    value="@Model?.AdresseMail" />
             </div>
         </div>
     </div>

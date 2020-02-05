@@ -32,6 +32,27 @@ namespace Isen.Dotnet.Library.Services
             "Sarrazin",
             "Vu Dinh"
         };
+
+        private List<string> _nom => new List<string>
+        {
+            "Villemat",
+            "Schneider",
+            "Delacroix",
+            "Voisin",
+            "Massoni",
+            "Pecout",
+            "Lucas"
+        };
+        private List<string> _prenom => new List<string>
+        {
+            "Alicia",
+            "Laure",
+            "Hubert",
+            "Pascale",
+            "Marie",
+            "Sylvain",
+            "Pierre"
+        };
         // Générateur aléatoire
         private readonly Random _random;
 
@@ -53,6 +74,12 @@ namespace Isen.Dotnet.Library.Services
         // Générateur de nom
         private string RandomLastName => 
             _lastNames[_random.Next(_lastNames.Count)];
+
+        private string RandomPrenom => 
+            _prenom[_random.Next(_prenom.Count)];
+        // Générateur de nom
+        private string RandomNom => 
+            _nom[_random.Next(_nom.Count)];
         // Générateur de ville
         private City RandomCity
         {
@@ -76,6 +103,13 @@ namespace Isen.Dotnet.Library.Services
             BirthCity = RandomCity,
             ResidenceCity = RandomCity
         };
+
+        private Personne RandomPersonne => new Personne()
+        {
+            Prenom = RandomPrenom,
+            Nom = RandomNom,
+            DateDeNaissance = RandomDate
+        };
         // Générateur de personnes
         public List<Person> GetPersons(int size)
         {
@@ -85,6 +119,16 @@ namespace Isen.Dotnet.Library.Services
                 persons.Add(RandomPerson);
             }
             return persons;
+        }
+
+        public List<Personne> GetPersonnes(int size)
+        {
+            var personnes = new List<Personne>();
+            for(var i = 0 ; i < size ; i++)
+            {
+                personnes.Add(RandomPersonne);
+            }
+            return personnes;
         }
 
         public List<City> GetCities()
@@ -123,6 +167,19 @@ namespace Isen.Dotnet.Library.Services
             var persons = GetPersons(50);
             // Les ajouter au contexte
             _context.AddRange(persons);
+            // Sauvegarder le contexte
+            _context.SaveChanges();
+        }
+
+        public void AddPersonnes()
+        {
+            _logger.LogWarning("Adding personnes...");
+            // S'il y a déjà des personnes dans la base -> ne rien faire
+            if (_context.PersonneCollection.Any()) return;
+            // Générer des personnes
+            var personnes = GetPersonnes(50);
+            // Les ajouter au contexte
+            _context.AddRange(personnes);
             // Sauvegarder le contexte
             _context.SaveChanges();
         }

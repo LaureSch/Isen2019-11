@@ -26,11 +26,12 @@
                             asp-controller="Home" asp-action="Index">Accueil</a>
                         </li>
 
+                        <!--
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" 
                                 id="navbarDropdown" role="button" 
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Personnes
+                                Person
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" 
@@ -39,7 +40,50 @@
                                     asp-controller="Person" asp-action="Edit">Nouvelle...</a>
                             </div>
                         </li>
+                        -->
 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" 
+                                id="navbarDropdown" role="button" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Personnes
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" 
+                                    asp-controller="Personne" asp-action="Index">Toutes</a>
+                                <a class="dropdown-item" 
+                                    asp-controller="Personne" asp-action="Edit">Nouvelle...</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" 
+                                id="navbarDropdown" role="button" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Services
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" 
+                                    asp-controller="Service" asp-action="Index">Tous</a>
+                                <a class="dropdown-item" 
+                                    asp-controller="Service" asp-action="Edit">Nouveau...</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" 
+                                id="navbarDropdown" role="button" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Roles
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" 
+                                    asp-controller="Role" asp-action="Index">Tous</a>
+                                <a class="dropdown-item" 
+                                    asp-controller="Role" asp-action="Edit">Nouveau...</a>
+                            </div>
+                        </li>
+
+                        <!--
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" 
                                 id="navbarDropdown" role="button" 
@@ -58,6 +102,7 @@
                             <a class="nav-link text-dark" asp-area="" 
                             asp-controller="Playground" asp-action="Index">Terrain de jeu</a>
                         </li>
+                        -->
 
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" 

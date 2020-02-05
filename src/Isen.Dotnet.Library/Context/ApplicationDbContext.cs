@@ -56,10 +56,10 @@ namespace Isen.Dotnet.Library.Context
 
             modelBuilder
                 .Entity<Personne>()
-                .ToTable(nameof(Personne))
-                .HasOne(p => p.Service)
-                .WithMany()
-                .HasForeignKey(p => p.ServiceId);
+                .ToTable(nameof(Personne));
+                //.HasOne(p => p.Service)
+                //.WithMany()
+                //.HasForeignKey(p => p.ServiceId);
 
             modelBuilder.Entity<Personne>()
                 .HasKey(p => p.Id);

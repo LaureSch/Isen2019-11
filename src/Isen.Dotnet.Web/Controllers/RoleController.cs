@@ -7,18 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace Isen.Dotnet.TD.Controllers
+namespace Isen.Dotnet.Web.Controllers
 {
-    public class PersonneController : BaseController<Personne>
+    public class RoleController : BaseController<Role>
     {
-        public PersonneController(
-            ILogger<PersonneController> logger,
+        public RoleController(
+            ILogger<RoleController> logger,
             ApplicationDbContext context) : base(logger, context)
         {
         }               
 
         // Exemple d'override de la query : liste les personnes
-        protected override IQueryable<Personne> BaseQuery() =>
+        protected override IQueryable<Role> BaseQuery() =>
             base.BaseQuery();
                 // Inclure BirthCity lors d'une requête faite sur une ville
                 //.Include(p => p.BirthCity)
