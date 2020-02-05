@@ -90,9 +90,14 @@ namespace Isen.Dotnet.Library.Services
         }
             //GetServices()[_random.Next(GetServices().Count)];
 
-        /* Générateur de role
-        private Service RandomRolesAffected =>
-            GetRoles()[_random.Next(GetRoles().Count)];*/
+        //Générateur de role
+        private Role RandomRolesAffected
+        {
+            get{
+                var roles = _context.RoleCollection.ToList();
+                return roles[_random.Next(roles.Count)];
+            }
+        }
 
         // Générateur de personne
         private Personne RandomPersonne
@@ -108,8 +113,8 @@ namespace Isen.Dotnet.Library.Services
                     DateDeNaissance = RandomDate,
                     Telephone = RandomPhoneNumber,
                     AdresseMail = prenom+"."+nom+"@isen.fr",
-                    Service = RandomServiceAffected
-                    //RolesAffected = RandomRolesAffected
+                    Service = RandomServiceAffected,
+                    Role = RandomRolesAffected
                 };
 
                 return personne;
