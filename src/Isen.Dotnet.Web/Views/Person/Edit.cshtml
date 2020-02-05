@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Edition d'un personne";
+    ViewData["Title"] = "Edition d'une personne";
 }
 @using Isen.Dotnet.Library.Model;
 @using Isen.Dotnet.Library.Context;
@@ -37,52 +37,30 @@
         </div>
     </div>
 
-    <h3>Villes <small>de la personne</small></h3>
+    <h3>Coordonnées <small>de la personne</small></h3>
     <div class="row">
         <div class="col-6">
             <div class="form-group">
-                <label for="BirthCity">Ville de naissance</label>
-                @Html.DropDownListFor(
-                    // Quel est le champ du modèle que l'on 
-                    // met à jour avec cette liste ?
-                    p => p.BirthCityId,
-                    // Liste des éléments
-                    new SelectList(
-                        // La liste
-                        _context.CityCollection,
-                        // Le champ d'id
-                        "Id",
-                        // Le champ de libellé
-                        "Name"
-                    ),
-                    // Item par défaut
-                    "Sélectionnez un ville...",
-                    // Classe CSS
-                    new { @class = "form-control" }
-                )
+                <label for="PhoneNumber">Numéro de téléphone</label>
+                <input
+                    id="PhoneNumber"
+                    type="text"
+                    class="form-control"
+                    placeholder="Numéro de téléphone"
+                    asp-for="PhoneNumber"
+                    value="@Model?.PhoneNumber" />
             </div>
         </div>
         <div class="col-6">
             <div class="form-group">
-                <label for="ResidenceCity">Ville de résidence</label>
-                @Html.DropDownListFor(
-                    // Quel est le champ du modèle que l'on 
-                    // met à jour avec cette liste ?
-                    p => p.ResidenceCityId,
-                    // Liste des éléments
-                    new SelectList(
-                        // La liste
-                        _context.CityCollection,
-                        // Le champ d'id
-                        "Id",
-                        // Le champ de libellé
-                        "Name"
-                    ),
-                    // Item par défaut
-                    "Sélectionnez un ville...",
-                    // Classe CSS
-                    new { @class = "form-control" }
-                )
+                <label for="MailAddress">Adresse mail</label>
+                <input
+                    id="MailAddress"
+                    type="text"
+                    class="form-control"
+                    placeholder="Adresse mail"
+                    asp-for="MailAddress"
+                    value="@Model?.MailAddress" />
             </div>
         </div>
     </div>

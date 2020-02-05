@@ -12,8 +12,9 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Date de naissance</th>
-                <th scope="col">Ville de naissance</th>
-                <th scope="col">Ville de résidence</th>
+                <th scope="col">Numéro de téléphone</th>
+                <th scope="col">Adresse mail</th>
+                <th scope="col">Service</th>
                 <th scope="col">Action...</th>
             </tr>
         </thead>
@@ -25,8 +26,9 @@
                 <td>@person.LastName</td>
                 <td>@person.FirstName</td>
                 <td>@person.DateOfBirth.Value.ToShortDateString() (@person.Age ans)</td>
-                <td>@person.BirthCity?.Name</td>
-                <td>@person.ResidenceCity?.Name</td>
+                <td>@person.PhoneNumber</td>
+                <td>@person.MailAddress</td>
+                <td>@person.ServiceAffected</td>
                 <td>
                     <a class="btn btn-outline-primary"
                         asp-controller="Person"

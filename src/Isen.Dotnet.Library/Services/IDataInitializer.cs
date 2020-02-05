@@ -5,11 +5,10 @@ namespace Isen.Dotnet.Library.Services
 {
     public interface IDataInitializer
     {
-         List<Person> GetPersons(int size);
          void DropDatabase();
          void CreateDatabase();
-         void AddPersons();
-         void AddCities();
+         void AddServices();
+         void AddRoles();
 
          List<Personne> GetPersonnes(int size);
          void AddPersonnes();
